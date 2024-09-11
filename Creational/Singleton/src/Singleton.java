@@ -1,5 +1,5 @@
 public final class Singleton {
-    private static volatile Singleton instance = null;
+    private static Singleton instance = null;
     public String value;
 
     private Singleton(String value) {
@@ -15,16 +15,10 @@ public final class Singleton {
     }
 
     public static Singleton getInstance(String value) {
-        Singleton result = instance;
-        if(result != null) return result;
-
-        synchronized(Singleton.class)
+        if (instance == null)
         {
-            if(instance == null)
-            {
-                instance = new Singleton(value);
-            }
-            return instance;
+            instance = new Singleton(value);
         }
+        return instance;
     }
 }
